@@ -2,59 +2,7 @@
 <html>
     <head>
         <title></title>
-        <script type="text/javascript">
-            window.onload=function() {
-
-                party1Obj = document.getElementById('txtParty1');
-                party2Obj = document.getElementById('txtParty2');
-                loss1Obj = document.getElementById('tdLoss1');
-                loss2Obj = document.getElementById('tdLoss2');
-
-                document.getElementById('btnRun').onclick = calcRun;
-                document.getElementById('btnReset').onclick = resetInputs;
-            }
-            function resetInputs() {
-                party1Obj.value = '';
-                party2Obj.value = '';
-                loss1Obj.innerHTML = '';
-                loss2Obj.innerHTML = '';
-            }
-
-            function calcRun() {
-                var p1 = new Number(party1Obj.value);
-                var p2 = new Number(party2Obj.value);
-                var new1, new2;
-                var loss1, loss2;
-                loss1Obj.innerHTML = '';
-                loss2Obj.innerHTML = '';
-                if(isNaN(p1) || isNaN(p2)) {
-                    alert('Invalid Party 1 or Party 2 : Must be numbers!');
-                    return;
-                }
-                loss1 = rollManyDice(p2);
-                loss2 = rollManyDice(p1);
-                new1 = p1 - loss1;
-                new2 = p2 - loss2;
-                party1Obj.value = new1;
-                party2Obj.value = new2;
-                loss1Obj.innerHTML = "Lost:" + loss1;
-                loss2Obj.innerHTML = "Lost:" + loss2;
-            }
-            function rollManyDice(count){
-                var min = 1;
-                var max = 12;
-                var random = 0;
-                var result = 0;
-                for(i=0;i<count;i++){
-                    random = Math.floor(Math.random() * (+max - +min)) + +min;
-                    if(random > 8){
-                        result++;
-                    }
-                }
-                return result;
-            }
-             
-        </script>
+        <script type="text/javascript" src="js/mass_combat.js"></script>
     </head>
     <body>
         <table>
@@ -70,8 +18,102 @@
             </tr>
             <tr>
                 <td></td>
-                <td><button id="btnReset">Reset</button><button id="btnRun">Run1</button></td>
+                <td><button id="btnReset">Reset</button><button id="btnRun">Run!</button></td>
             </tr>
         </table>
+        <table> 
+            <tr><td><p>Starship</p></td></tr>
+            <tr>
+                <th><label for="starshipSize">Size</label></th>
+                <th><label for="starshipxPort">xPort</label></th>
+                <th><label for="starshipiPort">iPort</label></th>
+            </tr>
+            <tr>
+                <td><input type="text" id="starshipSize" /></td>
+                <td><input type="text" id="starshipxPort" /></td>
+                <td><input type="text" id="starshipiPort" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button id="starshipReset">Reset</button><button id="starshipRun">Run!</button></td>
+            </tr>
+            <tr>
+                <td><p>Output:</p></td>
+                <td id="starshipOutput"></td>
+            </tr>
+        </table>
+        <table> 
+            <tr><td><p>Hull and Armor</p></td></tr>
+            <tr>
+                <th><label for="hullHealth">Health</label></th>
+                <th><label for="hullArmor">Armor</label></th>
+            </tr>
+            <tr>
+                <td><input type="text" id="hullHealth1" /></td>
+                <td><input type="text" id="hullArmor1" /></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="hullHealth2" /></td>
+                <td><input type="text" id="hullArmor2" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button id="hullReset">Reset</button><button id="hullRun">Run!</button></td>
+            </tr>
+            <tr>
+                <td><p>Output:</p></td>
+                <td id="hullOutput"></td>
+            </tr>
+        </table>
+        <table> 
+            <tr><td><p>Weapons</p></td></tr>
+            <tr>
+                <th><label for="wepDamage">Damage</label></th>
+                <th><label for="wepAP">Armor Piercing</label></th>
+                <th><label for="wepRE">Required Energy</label></th>
+            </tr>
+            <tr>
+                <td><input type="text" id="wepDamage1" /></td>
+                <td><input type="text" id="wepAP1" /></td>
+                <td><input type="text" id="wepRE1" /></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="wepDamage2" /></td>
+                <td><input type="text" id="wepAP2" /></td>
+                <td><input type="text" id="wepRE2" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button id="wepReset">Reset</button><button id="wepRun">Run!</button></td>
+            </tr>
+            <tr>
+                <td><p>Output:</p></td>
+                <td id="wepOutput"></td>
+            </tr>
+        </table>
+        <table> 
+            <tr><td><p>Drive and Power</p></td></tr>
+            <tr>
+                <th><label for="dpCharge">Max Charge</label></th>
+                <th><label for="dpSpeed">Max Speed</label></th>
+            </tr>
+            <tr>
+                <td><input type="text" id="dpCharge1" /></td>
+                <td><input type="text" id="dpSpeed1" /></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="dpCharge2" /></td>
+                <td><input type="text" id="dpSpeed2" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button id="dpReset">Reset</button><button id="dpRun">Run!</button></td>
+            </tr>
+            <tr>
+                <td><p>Output:</p></td>
+                <td id="dpOutput"></td>
+            </tr>
+        </table>
+        <h1 id="total">Total:</h1>
     </body>
 </html>
